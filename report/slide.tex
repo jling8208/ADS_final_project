@@ -1,0 +1,357 @@
+\documentclass{beamer}
+\usepackage{advDSpreamble}
+\newcommand{\xn}{\{x_n\}_{n=1}^\infty}
+\newcommand{\xnsum}{\sum_{n=1}^\infty a_n x_n}
+\newcommand{\xnsumn}{\sum_{i=1}^n a_i x_i}
+\newcommand{\xns}{\{x_n^*\}_{n=1}^\infty}
+\newcommand{\xnssum}{\sum_{n=1}^\infty a_n x_n^*}
+\newcommand{\xnssumn}{\sum_{i=1}^n a_i x_i^*}
+\newcommand{\wsconverge}{\mathop{\rightharpoonup}\limits^{*}}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{headline}{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{section in head/foot}%
+      \usebeamerfont{section in head/foot}\insertsectionhead%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{subsection in head/foot}%
+      \usebeamerfont{subsection in head/foot}\insertsubsectionhead%
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+\everymath{\displaystyle}
+% Use the Warsaw theme
+\usetheme{Warsaw}
+
+\title{Schauder basis}
+\author{Group )}
+\date{23rd, May, 2024}
+\usefonttheme{professionalfonts}
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Table of Contents}
+  \tableofcontents
+\end{frame}
+
+\section{Existence of Bases}
+\begin{frame}
+  \frametitle{Existence of Bases}
+    We first give some basic definitions
+    \begin{block}{Definition 1.1.}
+    A sequence $\{x_n\}_{n=1}^\infty$ in a Banach space $X$ is called a \textit{Schauder basis} of $X$
+	if for every $x\in X$ there is a unique sequence of scalars $\{a_n\}_{n=1}^\infty$ such that 
+	$x=\sum_{n=1}^\infty a_nx_n$.
+	A sequence which is a Schauder basis of its closed linear span is called a \textit{basic sequence}.
+    \end{block}  
+\end{frame}
+
+\begin{frame}{Basis Constant}
+    \begin{block}{Proposition 1.2.}
+        Let $X$ be a Banach space with a Schauder basis $\{x_n\}_{n=1}^\infty$.
+	  Then the projections $P_n:X\to X$, defined by $P_n\left(\sum_{i=1}^\infty a_ix_i\right)=\sum_{i=1}^n a_ix_i$,
+	  are bounded linear operators and $\sup_n\norm{P_n}<\infty$.
+    \end{block}
+    Proof. Define $\triplenorm{x}:=\sup_n\norm{\sum_{i=1}^n a_ix_i}$.
+	Evidently, $\triplenorm{\cdot}$ is a norm on $X$ and $\norm{x}\leq\triplenorm{x}$.\\
+	One may check that $X$ is complete under the norm $\triplenorm\cdot$.
+	Then by open mapping theorem, the norm $\norm\cdot$ and $\triplenorm\cdot$ is equivalent.\\
+	Therefore $P_n$ are bounded linear operators, and by UBP, $\sup_n\norm{P_n}<\infty$.
+\end{frame}
+\begin{frame}{Basis Constant}
+    \begin{block}{Definition 1.3.}
+        The number $K:=\sup_n\norm{P_n}$ is called the \textit{basis constant} of $\{x_n\}_{n=1}^\infty$.
+        A basis whose basis constant is 1 is called a \textit{monotone basis}.
+        In other words, a basis is monotone if, for every choice of scalars $\{a_n\}_{n=1}^\infty$, the sequence of numbers $\left\{\norm{\sum_{i=1}^n a_ix_i}\right\}_{n=1}^\infty$ is non-decreasing.
+    \end{block}
+\end{frame}
+\begin{frame}{Criterion of Schauder Basis}
+    \begin{block}{Proposition 1.4.}
+        Let $\{x_n\}_{n=1}^\infty$ be a sequence of vectors in $X$.
+	Then $\{x_n\}_{n=1}^\infty$ is a Schauder basis of $X$ if and only if the following three conditions hold.
+\begin{itemize}
+    \item[(i)] $x_n\neq0$ for all $n$.
+    \item[(ii)] There is a constant $K$ so that, for every choice of scalars $\{a_n\}_{n=1}^\infty$
+		and integers $n<m$, we have $$\norm{\sum_{i=1}^n a_ix_i}\leq K\norm{\sum_{i=1}^m a_ix_i}.$$
+	\item[(iii)] The closed linear span of $\{x_n\}_{n=1}^\infty$ is all of $X$.
+\end{itemize}
+    \end{block}
+\end{frame}
+\begin{frame}{Existence of basic sequence}
+    \begin{block}{Theorem 1.5.}
+        Every infinite dimensional Banach space contains a basic sequence.
+    \end{block}
+    The proof based on the following lemma.
+    \begin{block}{Lemma 1.6.}
+        Let $X$ be an infinite dimensional Banach space. Let $B\inc X$ be a finite-dimensional subspace and let $\varepsilon>0$.
+	Then there is an $x\in X$ with $\norm{x}=1$ so that $\norm{y}\leq(1+\varepsilon)\norm{y+\lambda x}$ for every $y\in B$ and every scalar $\lambda$.
+    \end{block}
+\end{frame}
+\begin{frame}{Equivalent Basis}
+    \begin{block}{Definition 1.7.}
+        Two bases, $\{x_n\}_{n=1}^\infty$ of $X$ and $\{y_n\}_{n=1}^\infty$ of $Y$, are called equivalent provided a series $\sum_{n=1}^\infty a_nx_n$ converges if and only if $\sum_{n=1}^\infty a_ny_n$ converges.
+    \end{block}
+    \begin{block}{Theorem 1.8.}
+        Let $X$ be an infinite dimensional Banach space with a Schauder basis. Then there are uncountably many mutually non-equivalent normalized bases in $X$.
+    \end{block}
+\end{frame}
+\begin{frame}{Block Basis}
+    \begin{block}{Definition 1.8.}
+        Let $\{x_n\}_{n=1}^\infty$ be a basic sequence in a Banach space $X$.
+    	A sequence of non-zero vectors $\{u_j\}_{j=1}^\infty$ in $X$ of the form $u_j=\sum_{n=p_j+1}^{p_{j+1}}a_nx_n$,
+    	with $\{a_n\}_{n=1}^\infty$ scalars and $p_1<p_2<\cdots$ and increasing sequence of integers, 
+    	is called a \textit{block basic sequence} or briefly a \textit{block basis} of the $\{x_n\}_{n=1}^\infty$.
+    \end{block}
+\end{frame}
+\section{Schauer Bases and Duality}
+\begin{frame}{Biorthogonal functionals}
+    We denotes $K$ as the basic constant.
+    \begin{block}{Definition 2.1.}
+        Given $\{x_n\}_{n=1}^\infty$ is a basis of a Banach space $X$. The biorthogonal functionals $\{x_n^*\}_{n=1}^\infty$ is defined as such that $ x_n^*(x_m)=0 $ when $m \neq n$. i.e., $x \in X,\,x=\sum_{n=1}^\infty a_n x_n,\,$then $x_n^*(x)=a_n$.
+    \end{block}
+    
+\end{frame}
+\begin{frame}{Remarks}
+\begin{block}{Remark 2.2.}
+        $X^*$ is the collection of all weak$^*$-convergent series $\sum_{n=1}^\infty a_n x_n^*$  (all $\sum_{n=1}^\infty a_n x_n^*$ such that $\sup_n
+    \left\Vert \sum_{i=1}^n a_i x_i^*\right\Vert$ is bounded). Hence $P_n^*x^*$ always well-defined and $P_n^*x^* \wsconverge x^*$.
+    \end{block}
+    
+\end{frame}
+\begin{frame}{Remarks}
+    \begin{block}{Remark 2.3.}
+        $\{x_n^*\}_{n=1}^\infty$ is a basic sequence with basic constant is identical to $\{x_n\}_{n=1}^\infty$.
+    \end{block}
+    Proof. $\abs{\sum_{i=1}^n a_i x_i^*(x)} = \abs{\sum_{i=1}^m a_i x_i^*(P_nx)} \leq \norm{\sum_{i=1}^m a_i x_i^*} \norm{P_n} \norm{x}$
+\\
+    Take $\Vert P_i \Vert \approx K$, $\exists \Vert x_0 \Vert =1$ s.t. $\Vert P_ix_0\Vert \approx K$, $\exists \Vert x_0^* \Vert=1$ s.t. $\Vert P_i^* x_0^*\Vert \geq x_0^*(P_ix_0)=\Vert P_ix_0\Vert$
+\end{frame}
+\begin{frame}{Shrinking Basis (1)}
+    \begin{block}{Proposition 2.4.}
+        Let $\{x_n\}_{n=1}^\infty$ be a basis of a Banach space $X$. The biorthogonal functionals $\{x_n^*\}_{n=1}^\infty$ form a basis of $X^*$ if and only if for every $x^*\in X^*$, the norm of $x^*\vert_{[x_i]_{i=n}^\infty}$ tends to 0 as $n\to \infty$. A basis $\{x_n\}_{n=1}^\infty$ which has this property is called shrinking.
+    \end{block}
+    Proof. $(\Rightarrow)$ $x^*=\xnssum$, then $\Vert P_n^*x^*-x^* \Vert \to 0$.
+    $\exists \,N$ s.t. when $n>N$, $\Vert P_n^*x^* -x^*\Vert<\varepsilon$
+    Then when $n>N+1$, $\Vert x^*\vert_{[x_i]_{i=n}^\infty} \Vert \leq \Vert P_{n-1}^*x^*\vert_{[x_i]_{i=n}^\infty} \Vert + \Vert ( P_{n-1}^*x^* -x^*)\vert_{[x_i]_{i=n}^\infty} \Vert < \varepsilon$
+\\
+
+    $(\Leftarrow)$ $\vert (x^*-P_n^*x^*)(x) \vert=\vert x^*[(I-P_n)(x)] \vert \leq \Vert x^*\vert_{[x_i]_{i=n}^\infty} \Vert \Vert I-P_n \Vert \Vert x \Vert \to 0 $ when $n\to\infty$
+\end{frame}
+\begin{frame}{Shrinking Basis (2)}
+    \begin{block}{Proposition 2.5.}
+        Let $\xn$ be a shrinking basis of a Banach space $X$. Then $X^{**}$ can be identified with the space of all sequence of scalars such that $\sup_n \left\Vert \xnsumn \right\Vert < \infty$. The norm of $x^{**}$ is equivalent (and in case the basis constant is 1 even equal) to $\sup_n \left\Vert \sum_{i=1}^n x^{**}(x_i^*)x_i \right\Vert $ .
+    \end{block}
+    Proof.     $\xns$ is basis of $X^*$ . Assume that basis constant is 1. Then $\Vert P_n^{**}\Vert$ is increasing and hence converges. $ x_n^{**} \wsconverge x^{**}$ , $\Vert x^{**} \Vert \leq \lim_n \Vert P_n^{**} x^{**} \Vert \leq \Vert x^{**} \Vert$ . Then $\Vert x^{**} \Vert = \sup_n \Vert P_n^{**} x^{**} \Vert$.
+\end{frame}
+\begin{frame}{Boundedly Complete Basis (1)}
+    \begin{block}{Definition 2.6.}
+        A basis $\xn$ of a Banach space is called boundedly complete if, for every sequence of scalars $\{a_n\}_{n=1}^\infty$ such that $\sup_n \left\Vert \xnsumn \right\Vert < \infty$, the series $\xnsum$ converges. 
+    \end{block}
+   
+\end{frame}
+\begin{frame}{Boundedly Complete Basis (2)}
+     \begin{block}{Proposition 2.7.}
+        A Banach space $X$ with a boundedly complete basis $\xn$ is isomorphic to the dual of $[x_n^*]_{n=1}^\infty$. (By canonical map)
+    \end{block}
+    Proof. Note that $\xns$ is basis of $Z=[x_n^*]_{n=1}^\infty$.
+    $\forall z \in Z^*$, $z=w^*\lim_n \sum_{i=1}^n z(x_i^*)J\,'(x_i)$. $\sup_n\left\Vert \sum_{i=1}^n z(x_i^*)J\,'(x_i) \right\Vert< \infty$ . \\
+    (Let $x^* \in [x_n^*]_{n=1}^\infty$, $\left\vert \sum_{i=1}^n z(x_i^*)J\,'(x_i)(x^*)\right\vert = \left\vert\sum_{i=1}^n z(x_i^*)(x^*(x_i))\right\vert \leq \Vert z \Vert \Vert P_n^*x^* \Vert \leq K\Vert z \Vert \Vert x^* \Vert$ )\\ 
+    
+\end{frame}
+\begin{frame}{The Proof}
+    Claim: $\Vert J\,'(x) \Vert \geq \frac{\Vert x \Vert}{K}$ , $\forall x \in X$
+
+    Consider $P_nx \in $ span$\{x_i\}_{i=1}^n$ , $\exists \,x^*(P_nx)=\Vert P_nx \Vert$ with $\Vert x^* \Vert=1$ , then $J\,'(x)(P_n^*x^*)=P_n^*x^*(x)=x^*P_n(x)=\Vert P_nx \Vert$. 
+    Then, $\Vert P_nx \Vert \leq \Vert J\,'(x)\Vert \Vert P_n^*\Vert \leq K\Vert J\,'(x) \Vert $ . Take $n\to \infty$.
+
+    Now, $\sup_n\left \Vert \sum_{i=1}^n z(x_i^*)x_i \right\Vert \leq K\sup_n\left \Vert \sum_{i=1}^n z(x_i^*)J\,'(x_i) \right\Vert < \infty$ . As $\xn$ is boundedly complete, $\sum_{i=1}^\infty z(x_i^*)x_i$ converges to $x\in X$, also, $z=J\,'(x)$.
+\end{frame}
+\begin{frame}{Criterion of Reflexive}
+    \begin{block}{Theorem 2.8.}
+        Let $X$ be a Banach space with a Schauder basis $\xn$. Then $X$ is reflexive if and only if $\xn$ is both shrinking and boundedly complete.
+    \end{block}
+    \begin{block}{Remark 2.9.}
+         A basis $\xn$ is shrinking if and only if $\xns$ is boundedly complete basis.
+    \end{block}
+\end{frame}
+\begin{frame}{Weak${}^*$ Basic Sequence}
+    \begin{block}{Definition 2.10.}
+        A basic sequence $\xns$ in $X^*$ is called a weak$^*$ basic sequence if there exist a sequence $\xn$ in $X$ for which $x_n^*(x_m)=\delta_n^m$ and such that, for every $x^*$ in the weak$^*$ closure of span $\xns$, we have
+    $x^*=w^*\lim_n \sum_{i=1}^n x^*(x_i)x_i^*$.
+    \end{block}
+    \begin{block}{Proposition 2.11.}
+        Let $X$ be a separable Banach space and let $Y^*$ be a separable subspace of $X^*$. Then, there is an equivalent norm $\triplenorm{\cdot}$ on $X$ such that, whenever $x_n^* \wsconverge x^*$ with $\xns \subset X^*$, $x^* \in Y^*$, and $\triplenorm{x_n^*} \to \triplenorm{x^*}$, we have $\triplenorm{x_n^*-x^*} \to 0$.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Proof of Proposition 2.11. (1)}
+    Proof. As $Y^*$ is separable, consider finite dimensional subspace $B_k$ such that union of $B_k$ is dense in Y and $B_1\subset B_2\subset ......\subset Y^*$ .
+    Consider an equivalent norm $\triplenorm{\cdot}$ on $X^*$ as follows :
+    $$\triplenorm{x^*} := \Vert x^* \Vert + \sum_{k=1}^\infty 2^{-k}d(x^*,B_k) $$
+
+    Suppose (1) $x_n^* \wsconverge x^*$ and (2) $\triplenorm{x_n^*} \to \triplenorm{x^*}$ . From (1), we have $\liminf_n \Vert x_n^*\Vert \geq \Vert x^*\Vert$ and $\liminf_n d(x_n^*,B_k) \geq d(x^*,B_k)$ . Hence by (2), $\lim_n d(x_n^*,B_k) = d(x^*,B_k)$. As $x^*\in Y^*$, $\lim_k d(x^*,B_k)=0$. 
+
+    Given $\varepsilon>0,\, \exists\, k $ s.t. $d(x^*,B_k)<\varepsilon$ . $\exists\, N,\,\forall\, n \geq N,\, d(x_n^*,B_k)<\varepsilon$. Hence $\exists\, u_n^*\in B_k$ s.t. $\Vert x_n^*-u_n^*\Vert<2\varepsilon$ .
+\end{frame}
+\begin{frame}{Proof of Proposition 2.11. (2)}
+    Note that $\Vert x_n^* \Vert$ is bounded hence $u_n^*$ also. As $B_k$ is finite dimension, there is a subsequence $u_{n_i}^* \to u^*\in B_k$. Now, $\exists\, i\,'$ s.t. for all $ i>i\,',\, \Vert x_{n_i}^*-u^*\Vert \leq \Vert x_{n_i}^* - u_{n_i}^* \Vert + \Vert u_{n_i}^* - u^* \Vert \leq 4\varepsilon$ and $x_{n_i}^* \wsconverge x^*$ implies $\Vert x^*-u^*\Vert \leq 4\varepsilon$ by taking liminf. Hence $\Vert x^* - x_{n_i}^*\Vert \leq 8\varepsilon$.
+
+    Given a subsequence, we can construct a further subsequence such that the tail is being "constrained". Given a subsequence $\{x_{n_k}\}$ of $\{x_n^*\}$, construct $\{x_j^i\}\subset\{x_j^{i-1}\}$ s.t. there exists $N_i$ s.t. $\Vert x_j^i-x^*\Vert < \frac{\varepsilon}{2^i} ,\forall\,j>N_i$. By diagonal argument, there is a subsequence of $\{x_{n_k}^*\}$ converges to $x^*$. It forces $x_n^* \to x^*$. 
+\end{frame}
+\begin{frame}{Boundedly Complete and the Dual}
+    \begin{block}{Proposition 2.12.}
+        Let $X$ be a Banach space whose dual $X^*$ is separable, then every sequence $\xns$ in $X^*$ such that $x_n^* \wsconverge 0$ and $\limsup_n \Vert x_n^* \Vert >0$ has a boundedly complete basic subsequence $\{x_{n_k}^*\}_{k=1}^\infty$.
+    \end{block}
+    Proof. Fact :
+    Given a sequence $\{x_n^*\}$ with $\Vert x_n^* \Vert =1$ and $x_n^*\wsconverge 0$, there is a weak$^*$ basic subsequence with $\Vert P_n^*\Vert \to 1$.\\
+    Recall: $y_n\wsconverge y,\, \Vert y_n\Vert \to \Vert y \Vert$ , then $\Vert y_n - y\Vert \to 0$.\\
+    Consider $y_n^*:= \frac{x_n^*}{\Vert x_n^* \Vert} $ has norm 1 and there is a subsequence $y_{n_k}^*\wsconverge0$ by $\Vert x_{n_k}^* \Vert >\varepsilon$ and $\vert y_{n_k}^*(a)\vert < \vert x_{n_k}^*(a)\vert \cdot \frac{1}{\varepsilon}$ . Hence by fact, there is a further subsequence $\{y_{n_j}^*\}$ is weak$^*$ basic sequence, and $\{x_{n_j}^*\}$ also.    
+\end{frame}
+\begin{frame}{Proof of Proposition 2.12. (1)}
+    \textbf{Claim}: Given $z_n=\sum_{j=1}^n a_j x_{n_j}^*$ with $\sup_n \Vert z_n \Vert < \infty$, then $z_n$ strongly converges.\\
+    $z_n$ is bounded and X is separable, then by sequential Banach-Alaoglu theorem, closed ball of $X^*$ is weak$^*$ sequentially compact. Hence there exists subsequence $z_{n_k} \wsconverge z $ lies in weak$^*$ closure of $\{x_{n_j}^*\}$ . Then $z=w^*\lim_n\sum^n z(x_{n_j})x_{n_j}^*= w^*\lim_n\sum^n a_j x_{n_j}^*$ as $\{x_{n_j}^*\}$ is weak$^*$ basic sequence. Hence $z_n \wsconverge z$ .
+
+    
+\end{frame}
+\begin{frame}{Proof of Proposition 2.12 (2)}
+    On the other hand,
+    $$\Vert z\Vert \leq \liminf_n\Vert z_n\Vert \leq \limsup_n\Vert z_n \Vert = \limsup_n \Vert P_n^*z \Vert \leq \Vert z \Vert$$ $(\Vert P_n^* \Vert \to 1)$
+
+    Then $\Vert z_n\Vert \to \Vert z\Vert$ . By recall, $z_n\to z$ .
+\end{frame}
+\begin{frame}{Reflexive and Separable}
+\begin{block}{Proposition 2.13.}
+        Let $X$ be an infinite dimensional Banach space with a separable dual. Then $X$ contains a shrinking basic sequence.
+    \end{block}
+    \begin{block}{Theorem 2.14.}
+        Let $X$ be a Banach space whose dual $X^*$ is separable. Let $Y^*$ be an infinite dimensional subspace of $X^*$ with a separable dual $Y^{**}$. Then $Y^*$ has an infinite dimensional reflexive subspace.
+    \end{block}
+    \begin{block}{Corollary 2.15.}
+        Let X be an infinite dimensional Banach space whose second dual $X^{**}$ is separable. Then every infinite dimensional subspace of $X$ or $X^*$ contains an infinite dimensional reflexive subspace. 
+    \end{block}
+\end{frame}
+\section{Unconditional Bases}
+\begin{frame}{Unconditional Convergence}
+    \begin{block}{Proposition 3.1.}
+        Let $\{x_n\}_{n=1}^\infty$ be a sequence of vectors in a Banach space $X$. Then the following conditions are equivalent.\\
+             (i) $\sum_{n=1}^\infty x_{\pi(n)}$  converges for all permutation $\pi$ of the integers.\\
+             (ii)$\sum_{i=1}\limits^\infty x_{n_i}$ converges for every choice of $n_1<n_2<n_3<\cdots$.\\
+             (iii)$\sum\limits_{n=1}^\infty \theta_nx_{n}$ converges for every choice of signs $\theta_n$(i.e. $\theta_n=\pm1$).\\
+             (iv)For every $\varepsilon>0$ there exists an integer $n$ s.t. $\norm{\sum\limits_{i\in\sigma}x_i}<\varepsilon$ for every set of integers $\sigma$ which satisfies $\min\{i\in\sigma\}>n$.
+        
+    \end{block}
+\end{frame}
+\begin{frame}{Absolute Convergence}
+    \begin{block}{Theorem 3.2.}
+        Let $X$ be an infinite dimensional Banach space. Let $\set{\lambda_n}_{n=1}^\infty$ be a sequence of positive numbers such that $\sum\limits_{n=1}^\infty \lambda_n^2<\infty$. Then there is an unconditionally convergent series $\sum\limits_{n=1}^\infty x_n$ in $X$ such that $\norm{x_n}=\lambda_n$ for every $n$.
+    \end{block}
+\end{frame}
+\begin{frame}{The Lemma to prove Theorem 3.2.}
+    \begin{block}{Lemma 3.3.}
+        Let $B$ be a Banach space of dimension $n^2$ and norm $\norm{\cdot}$. Then there is an $n-$dimensional subspace $C$ of $B$ and an inner product norm $\triplenorm{\cdot}$ on $C$ so that $\norm{y}\leq\triplenorm{y}$, for all $y\in C$, and an orthonormal basis $\set{y_i}_{i=1}^n$ of $C$ with $\norm{y_i}\geq 1/8$ for all $i$.
+    \end{block}
+    To prove this, we consider the following statement. Define $\triplenorm{x}_1:=n\left(\sum\limits_{j=1}^{n^2}x_j^*(x)^2\right)^{1/2}.$\\
+    Every subspace $C$ of $B$ with $\dim C>\frac{1}{2}\dim B$ contains a vector $y$ with $\triplenorm{y}_1=1$ and $\norm{y}>1/8$. ($*$)\\
+\end{frame}
+\begin{frame}{Proof of Theorem 3.2. }
+    From previous lemma, the unit vectors $u_i=y_i/\norm{y_i}$ satisfy \begin{align*}
+    \norm{\sum_{i=1}^n a_iu_i}\leq\triplenorm{\sum_{i=1}^n a_iu_i}=\left(\sum_{i=1}^n |a_i|^2\triplenorm{u_i}^2\right)^{1/2}\leq 8\left(\sum_{i=1}^n |a_i|^2\right)^{1/2}.
+\end{align*}
+Then we may find unit vectors $\set{u_i}_{i=n_k}^{n_{k+1}-1}$, where $\set{n_k}_{k=1}^\infty$ such that $\sum\limits_{i=n_k}^\infty \lambda_i^2\leq 2^{-2k}$. So if we put $x_i=\lambda_iu_i$, then for every choice of $\theta_i$, \begin{align*}
+        \norm{\sum_{i=n_k}^{n_{k+1}-1}\theta_ix_i}\leq 8\left(\sum_{i=n_k}^{n_{k+1}-1}\lambda_i^2\right)^{1/2}\leq8\cdot 2^{-k}.
+    \end{align*} 
+\end{frame}
+\begin{frame}{Property of Unconditional basis}
+    \begin{block}{Definition 3.4.}
+        Similar to the definition of the basis constant, we may define two bounded linear operators, $P_\sigma$ and $M_\theta$, where $\sigma\subseteq\N$ and $\theta=\set{\theta_n}_{n=1}^\infty$. One may observe that \begin{align*}
+    \sup_\sigma\norm{P_\sigma}\leq\sup_\theta\norm{M_\theta}\leq2\sup_\sigma\norm{P_\sigma}.
+\end{align*}
+Let $K=\sup\limits_{\theta}\norm{M_\theta}$. The number is called the unconditional constant of $\xn$.
+    \end{block}
+    
+\end{frame}
+\begin{frame}{Unconditional Constant}
+    \begin{block}{Proposition 3.5.}
+    Let $\xn$ be an unconditional basic sequence with an unconditional constant $K$. Then for every choice of scalars $\set{a_n}_{n=1}^\infty$ such that $\xnsum$ converges and every choice of bounded scalars $\set{\lambda_n}_{n=1}^\infty$ we have \begin{align*}
+        \norm{\sum_{n=1}^\infty \lambda_na_nx_n}\leq 2K\sup_n |\lambda_n|\norm{\xnsum}
+    \end{align*}
+    If all of the scalars are real, then we may replace $2K$ by $K$. 
+    \end{block}
+\end{frame}
+\begin{frame}{Main Theorems of Unconditional Basis (1)}
+    \begin{block}{Theorem 3.6.}
+        Let $X$ be a Banach space with an unconditional basis $\xn$. Then $\xn$ is shrinking if and only if $X$ does not have a subspace isomorphic to $\ell_1$.
+    \end{block}
+    Sketch of the Proof. If part is clear. Conversely, suppose that $\xn$ is not shrinking, then pick $x^*$ with norm 1, and a normalized block basis  $\set{u_j}_{j=1}^\infty$. Then we may conclude that  $\set{u_j}_{j=1}^\infty$ is equivalent to the standard basis of $\ell_1$. 
+\end{frame}
+\begin{frame}{Main Theorems of Unconditional Basis (2)}
+    \begin{block}{Lemma 3.7.}
+        Let $\xn$ be an unconditional basis of a Banach space $X$with biorthogonal functionals $\xns$. Let $\set{y_i}_{i=1}^\infty\subseteq X$ be a bounded sequence in $X$ such that $\lim\limits_{i\to\infty} x^*(y_i)$ exists for every $x^*$ and such that $\lim\limits_{i\to\infty} x_n^*(y_i)=0$ for every $x_n^*$. Then $\lim\limits_{i\to\infty} x^*(y_i)=0$ for every $x^*\in X^*$.
+    \end{block}
+Sketch of the Proof. Assume that for some $x^*\in X^*$ and $\varepsilon>0$, $x^*(y_i)>\varepsilon$ for all $i$. There is a subsequence $\set{y_{i_k}}_{k=1}^\infty$ so that $\norm{y_{i_k}-u_k}<2^{-k}$ for some block basis $\set{u_j}_{j=1}^\infty$. $\set{y_{i_k}}_{k=1}^\infty$ is equivalent to the standard basis in $\ell_1$. Therefore, there exists $y^*\in X^*$ such that $y^*(y_{i_k})=(-1)^k$.
+\end{frame}
+\begin{frame}{Main Theorems of Unconditional Basis (2)}
+        \begin{block}{Theorem 3.8.}
+        Let $X$ be a Banach space with an unconditional basis $\xn$. Then the following assertions are equivalent \begin{itemize}
+         \item[(i)] The basis is boundedly complete.
+         \item[(ii)] $X$ is weakly sequentially complete (i.e. if $\set{y_i}_{i=1}^\infty\subseteq X$ such that $\lim\limits_{i\to\infty} x^*(y_i)$ exists for every $x^*$, then there is a $y\in X$ such that $x^*(y)=\lim\limits_{i\to\infty} x^*(y_i)$ for every $x^*$.)
+         \item[(iii)] $X$ does not have a subspace isomorphic to $c_0$.
+     \end{itemize}
+    
+        \end{block}
+          Proof. (i)$\implies$(ii). By \textbf{Lemma 3.7.}\\
+    (ii)$\implies$(iii). Since $c_0$ is not weakly sequentially complete.\\
+    (iii)$\implies$(i). By \textbf{Proposition 3.5.}
+\end{frame}
+
+\section{Examples of Spaces without an Unconditional Basis}
+\begin{frame}{Examples of Spaces without an Unconditional Basis (1)}
+    \begin{block}{Proposition 4.1}
+        The space $L^1([0,1])$ is not isomorphic to a subspace of a space with an unconditional basis.
+    \end{block}
+    Proof. Suppose $Y\supseteq L^1([0,1])$ has a unconditional basis.\\
+    Consider the Rademacher function $r_n(t)=\text{sgn}\sin 2^n\pi t$. We can construct a suitable basic sequence $x_n=(x_1+\cdots+x_{n-1})r_{k_n}$ and a block basis $\{u_n\}_{n=1}^\infty$
+    of the unconditional basis of $Y$ such that $\{x_n\}_{n=1}^\infty\sim\{u_n\}_{n=1}^\infty\sim$ unit vector basis in $c_0$.\\
+    By \textbf{Theorem 3.8}, this contradicts that $L^1([0,1])$ is weakly-sequentially complete.
+\end{frame}
+\begin{frame}{Examples of Spaces without an Unconditional Basis (2)}
+    \begin{block}{Example 4.2}
+        Consider the space $J$ of all sequences of scalars $x=(a_1,a_2,\ldots)$ for which
+    	\begin{itemize}
+    		\item[(i)] $\norm{x}=\sup_{p_1<p_2<\cdots<p_m}\frac1{\sqrt2}[(a_{p_1}-a_{p_2})^2+(a_{p_2}-a_{p_3})^2+\cdots
+    		+(a_{p_{m-1}}-a_{p_m})^2+(a_{p_m}-a_{p_1})^2]^{\frac12}<\infty$
+    		\item[(ii)] $\lim_{n\to\infty}a_n=0$
+    	\end{itemize}
+    	Then $J$ is a Banach space with a Schauder basis whose canonical image is of codimension 1 in $J^{**}$,
+        and $J^{**}$ is isometrically isomorphic to $J$.
+    \end{block}
+\end{frame}
+\begin{frame}{Examples of Spaces without an Unconditional Basis (2)}
+    Proof. Check \begin{itemize}
+        \item[(1)] $J$ is Banach. 
+    	\item[(2)] The unit vectors $\{e_n\}_{n=1}^\infty$ form a normalized monotone basis of $J$.
+    	\item[(3)] The unit vectors $\{e_n\}_{n=1}^\infty$ form a shrinking basis of $J$.\\ 
+    		Proof. Assume that for some $x^*\in J^*$, some $\varepsilon>0$ and a normalized block basis $\{u_k\}_{k=1}^\infty$ of $\{e_n\}_{n=1}^\infty$
+    		we have $x^*(u_k)\geq\varepsilon$ for all $k$.\\
+    		It is easily verified that $\sum_{k=1}^\infty u_k/k$ converges in $J$.\\
+    		Since $\sum_{k=1}^\infty x^*(u_k)/k$ does not converge we arrived at a contradiction. \qed \\
+    	\noindent By \textbf{Proposition 2.4} $\{e_n^*\}_{n=1}^\infty$ form a (monotone) basis of $J^*$.
+    \end{itemize}
+\end{frame}
+\begin{frame}{Examples of Spaces without an Unconditional Basis (2)}
+    \begin{itemize}
+        \item[(4)] $J^{**}$ is the space of all sequences satisfying (i) by (3) and \textbf{Proposition 2.5}.\\
+    	Therefore $J^{**}=J+\text{span}\{x_0^{**}\}$ where $x_0^{**}=(1,1,\ldots)$.
+    	\item[(5)] $U:J^{**}\to J$ is an onto isometry given by
+        $$x^{**}=(a_1,a_2,\ldots),\,\lambda=\lim_{n\to\infty}a_n$$
+    	$$Ux^{**}=(-\lambda,a_1-\lambda,a_2-\lambda,\ldots)$$
+    	($\norm{x^{**}}=\sup_n\norm{\sum_{i=1}^n(x^{**}e_i^*)e_i}=\sup_n\norm{\sum_{i=1}^na_ie_i}$ by \textbf{Proposition 2.5})
+    \end{itemize}
+\end{frame}
+\end{document}

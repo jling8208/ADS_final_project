@@ -1,0 +1,166 @@
+\ProvidesPackage{advDSpreamble}
+  [2025/05/14 advDSPreamble]
+
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{amssymb}
+\RequirePackage{amsmath, amsthm}
+\RequirePackage{mathrsfs}
+\RequirePackage{mathtools}
+\RequirePackage{fontspec}
+\RequirePackage{cancel}
+\RequirePackage{xifthen}
+\RequirePackage[shortlabels]{enumitem}
+% \RequirePackage[hidelinks]{hyperref}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]        %定義
+\newtheorem{ax}[defn]{Axiom}             %公理
+\newtheorem{thm}[defn]{Theorem}            %定理
+\newtheorem*{thm*}{Theorem}                %定理
+\newtheorem{prop}[defn]{Proposition}           %命題
+\newtheorem{lem}[defn]{Lemma}            %引理
+\newtheorem{cor}[defn]{Corollary}            %推論          
+\newtheorem{ex}[defn]{Example}             %例子
+\newtheorem*{ex*}{Example}                 %不編號例子
+\newtheorem{rmk}[defn]{Remark}             %備註 remark
+\newtheorem*{re*}{Remark}                 %不編號備註 
+\newtheorem{exer}[defn]{Exercise}           %習題
+\newtheorem{exer*}{Exercise}                %不編號習題
+\newtheorem{pr}[defn]{Property}             %性質
+\newtheorem{pt}[defn]{Point}             %重點 point
+\newtheorem{rec}[defn]{Recall}            %回顧 recall
+\newtheorem*{no*}{Notation}
+\newtheorem*{ques*}{Question}
+
+
+
+
+\newcommand\C{\mathbb C}
+\newcommand\R{\mathbb R}
+\newcommand\Q{\mathbb Q}
+\newcommand\N{\mathbb N}
+\newcommand\Z{\mathbb Z}
+
+% \dx dy dz
+\newcommand\dx{\,\text{d}x}
+\newcommand\dy{\,\text{d}y}
+\newcommand\dz{\,\text{d}z}
+\newcommand\dt[1]{\,\text{d}#1}
+
+\DeclareMathOperator{\intr}{int}
+\DeclareMathOperator{\extr}{ext}
+\DeclareMathOperator{\ext}{ext}
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\im}{Im}
+
+\newcommand\6\partial
+\newcommand\inc\subseteq
+\newcommand\exc\setminus
+\newcommand\Id{\text{Id}}
+\newcommand\osc{\operatorname*{osc}}
+\newcommand\Wlog{\text{W.L.O.G. }}
+\newcommand\spanf[1]{\text{span}\left\{#1\right\}}
+\newcommand\overtext[2]{\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny\text{#1}}}}{#2}}}
+
+\newcommand\floor[1]{\left\lfloor #1 \right\rfloor}
+\newcommand\ceil[1]{\left\lceil #1 \right\rceil}
+
+% \set[condition]{set}
+\newcommand\set[2][]
+{
+    \ifthenelse{\isempty{#1}}
+    {
+        \left\{#2\right\}
+    }
+    {
+        \left\{#2\left|\,#1\right.\right\}
+    }
+}
+\newcommand\fset[2][]
+{
+    \ifthenelse{\isempty{#1}}
+    {
+        \left\{#2\right\}
+    }
+    {
+        \left\{\left.#2\right|\,#1\right\}
+    }
+}
+
+% \diff[function]{variable}{degree}
+\newcommand\diff[3][]
+{
+    \ifthenelse{\isempty{#3}}
+    {
+        \dfrac{d#1}{d#2}
+    }
+    {
+        \dfrac{d^{#3}#1}{d{#2}^{#3}}
+    }
+}
+
+% \pdiff[degree]{function}{variable}
+\newcommand\pdiff[3][]
+{
+    %\dfrac{\partial^{#3}#1}{\partial{#2}^{#3}}
+    \dfrac{\partial^{#1}{#2}}{\partial{#3}^{#1}}
+}
+
+% \Comb{m}{n}
+\newcommand\Comb[2]
+{
+    \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+}
+
+% \abs{vector}
+\newcommand\abs[1]
+{
+    \left|#1\right|
+}
+
+% \norm{vector}
+\newcommand\norm[1]
+{
+    \left\lVert #1 \right\rVert
+}
+
+% \ip{function 1}{function 2}
+\newcommand\ip[2]
+{
+    \left\langle #1, \, #2 \right\rangle
+}
+
+% \disj and \bigdisj 
+\newcommand\Disj
+{
+    \setbox0\hbox{$\sqcup$}
+    \rlap{\hbox to \wd0{\hss\raisebox{3.5pt}{$\cdot$}\hss}}\box0
+}
+\newcommand\disj
+{
+    \mathbin{\mathchoice{\Disj}{\Disj}{\scalebox{0.5}{$\Disj$}}{\scalebox{0.4}{$\Disj$}}}
+}
+\newcommand\BigDisj
+{
+    \setbox0\hbox{$\displaystyle\bigsqcup$}
+    \rlap{\hbox to \wd0{\hss\raisebox{7.8pt}{$\cdot$}\hss}}\box0
+}
+\newcommand\bigdisj
+{
+    \mathop{\mathchoice{\BigDisj}{\scalebox{0.7}{$\BigDisj$}}{\scalebox{0.5}{$\BigDisj$}}{\scalebox{0.4}{$\BigDisj$}}}
+}
+
+\newcommand\triplenorm[1]{\left\lvert\kern-0.25ex\left\lvert\kern-0.25ex\left\lvert #1 \right\rvert\kern-0.25ex\right\rvert\kern-0.25ex\right\rvert}
+
+\newlength\myheight
+    \newlength\mydepth
+    \settototalheight\myheight{Xygp}
+    \settodepth\mydepth{Xygp}
+    \setlength\fboxsep{0pt}
+    \newcommand*\inlinegraphics[2][0]{%
+    \settototalheight\myheight{Xygp}%
+    \settodepth\mydepth{Xygp}%
+    \raisebox{-\mydepth+{#1}pt}{\includegraphics[height=\myheight]{#2}}%
+    }
+
+\endinput
