@@ -76,8 +76,10 @@
 
 \begin{frame}{EDCS on Dynamic Graphs}
     EDCS is good on general graphs.
-    \begin{lemma}
-        Given a graph $G$, $H=\EDCS$ achieves $\mu(G)\leq\left( \frac{3}{2}+\varepsilon \right)\mu(H)$.
+    \begin{lemma}[\cite{AB19}]
+        Let $G(V, E)$ be any graph and $\varepsilon < 1/2$ be a parameter. 
+        For $\lambda \leq \frac{\varepsilon}{32}$, $\beta \geq 8 \lambda^{-2} \log(1/\lambda)$, and $\beta^{-} \geq (1 - \lambda) \cdot \beta$, 
+        in any subgraph $H := \mathrm{EDCS}(G, \beta, \beta^-)$, $$\mu(G) \leq \left(\frac{3}{2} + \varepsilon\right) \cdot \mu(H).$$
     \end{lemma}
 \end{frame}
 
@@ -106,6 +108,9 @@
 \section{Promising Directions}
 \begin{frame}{Some Ideas}
     EDCS is a greedy algorithm. Maybe we can be less greedy.
+    \begin{block}{Idea}
+        We can try to find a better algorithm.        
+    \end{block}
 \end{frame} 
 
 \begin{frame}{bibliography}
