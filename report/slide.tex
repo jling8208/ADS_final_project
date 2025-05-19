@@ -21,7 +21,6 @@
 \usepackage{filecontents}
 \addbibresource{\jobname.bib}
 
-\everymath{\displaystyle}
 % Use the Warsaw theme
 \usetheme{Warsaw}
 \setbeamertemplate{theorems}[numbered]
@@ -50,7 +49,7 @@
         For any graph $G(V,E)$ and integers $\beta\geq\beta^-\geq0$, 
         an edge-degree constrained subgraph (EDCS) $(G,\beta,\beta^-)$ is a subgraph 
         $H:=(V,E(H))$ of $G$ with the following two properties:
-        \begin{enumerate}[label=(P\arabic*)]
+        \begin{enumerate}[label=(P\arabic*),leftmargin=1cm]
             \item For any edge $(u,v)\in E(H)$: $\deg_H(u)+\deg_H(v)\leq\beta$.
             \item For any edge $(u,v)\in E\exc E(H)$: $\deg_H(u)+\deg_H(v)\geq\beta^-$.
         \end{enumerate}
@@ -66,8 +65,10 @@
 \section{Maximal Matching Problems}
 \begin{frame}{EDCS on Dynamic Graphs}
     EDCS is good on bipartites.
-    \begin{lemma}
-        Given a bipartite $G$, $H=\EDCS$ achieves $\mu(G)\leq\left( \frac{3}{2}+\varepsilon \right)\mu(H)$.
+    \begin{lemma}[\cite{AB19}]
+        Let $G(L,R,E)$ be any bipartite graph and $\varepsilon < 1/2$ be a parameter. 
+        For $\lambda \leq \frac{\varepsilon}{4}$, $\beta \geq 2 \lambda^{-1}$, and $\beta^{-} \geq (1 - \lambda) \cdot \beta$, 
+        in any subgraph $H := \mathrm{EDCS}(G, \beta, \beta^-)$, $$\mu(G) \leq \left(\frac{3}{2} + \varepsilon\right) \cdot \mu(H).$$
     \end{lemma}   
     \begin{proof}
         We try to find the correct constant.
@@ -83,6 +84,17 @@
     \end{lemma}
 \end{frame}
 
+\begin{frame}{EDCS on Dynamic Graphs}
+    We can use EDCS to maintain a large matching in a dynamic graph.
+    \begin{block}{Algorithm}
+        This is the algorithm.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Trade-off}
+    There are some trade-offs between the size of the matching and the update time.
+\end{frame}
+
 \begin{frame}{One-way Communication Protocal}
     \begin{definition}
         One-way communication protocol is a protocol where the sender sends a message to the receiver, 
@@ -92,10 +104,26 @@
 \end{frame}
 
 \begin{frame}{EDCS on Stochastic Graphs}
-    EDCS is good on stochastic graphs.
-    \begin{lemma}
-        Given a stochastic graph $G$, $H=\EDCS$ achieves $\mu(G)\leq\left( \frac{3}{2}+\varepsilon \right)\mu(H)$.
-    \end{lemma}
+    In the stochastic matching problem, 
+    the goal is to compute a bounded-degree subgraph $H$ of a given graph $G$, 
+    such that $\mathbb{E}[\mu(H_p)]$ is a good approximation of $\mathbb{E}[\mu(G_p)]$, 
+    where $G_p$ is a realization of $G$ (i.e., a subgraph where every edge is sampled with probability $p$), 
+    and $H_p = H \cap G_p$.
+    \begin{theorem}
+        There exists a deterministic poly-time algorithm that given a graph $G(V, E)$ and parameters $\varepsilon, p > 0$ with $\varepsilon < 1/4$, computes a subgraph $H(V, E_H)$ of $G$ with maximum degree $O\left(\frac{\log (1 / \varepsilon p)}{\varepsilon^2 \cdot p} \right)$ such that the ratio of the expected size of a maximum matching in realizations of $G$ to realizations of $H$ is at most $(3/2 + \varepsilon)$, i.e.,
+        $$\mathbb{E}[\mu(G_p)] \leq (3/2 + \varepsilon) \cdot \mathbb{E}[\mu(H_p)].$$
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{EDCS on Stochastic Graphs}
+    \begin{proof}
+        An algorithm for the stochastic matching problem.
+        Output the subgraph $H := \EDCS(G,\beta,\beta-1)$ for $\beta:=\frac{C\log(1/\varepsilon p)}{\varepsilon^2p}$, for large enough constant $C$.
+    \end{proof}
+    \begin{block}{Key Lemma}
+        Let $H_p := H \cap G_p$ denote a realization of $H$; then $\E[\mu(G_p)] \leq (3/2+O(\varepsilon))\cdot\E[\mu(H_p)]$
+        where the randomness is taken over the realization $G_p$ of $G$.
+    \end{block}
 \end{frame}
 
 \begin{frame}{EDCS on Fault-tolerent Graphs}
@@ -105,7 +133,7 @@
     \end{lemma}
 \end{frame}
 
-\section{Promising Directions}
+\section{Open Problems}
 \begin{frame}{Some Ideas}
     EDCS is a greedy algorithm. Maybe we can be less greedy.
     \begin{block}{Idea}
